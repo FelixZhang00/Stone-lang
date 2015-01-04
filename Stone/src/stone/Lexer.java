@@ -82,15 +82,22 @@ public class Lexer {
 	protected void addToken(int lineNo, Matcher matcher) {
 		String m = matcher.group(1);
 		if (m != null) // if not a space
+		// System.out.println("group1:" + m);
 			if (matcher.group(2) == null) { // if not a comment
 				Token token;
-				if (matcher.group(3) != null)
+				if (matcher.group(3) != null) {
+					// System.out.println("group3:" + matcher.group(3));
 					token = new NumToken(lineNo, Integer.parseInt(m));
-				else if (matcher.group(4) != null)
+				} else if (matcher.group(4) != null) {
+					// System.out.println("group4:" + matcher.group(4));
 					token = new StrToken(lineNo, toStringLiteral(m));
-				else
+				} else {
+					// System.out.println("group5:"+matcher.group(5));
 					token = new IdToken(lineNo, m);
+				}
 				queue.add(token);
+			} else { // 输出注释
+			// System.out.println("group2:" + matcher.group(2));
 			}
 	}
 

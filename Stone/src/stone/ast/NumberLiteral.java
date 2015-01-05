@@ -10,4 +10,5 @@ public class NumberLiteral extends ASTLeaf {
 	public int value() {
 		return token().getNumber();
 	}
+	
 }
